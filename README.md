@@ -37,8 +37,8 @@ services:
       bind9_subnet:
         ipv4_address: 10.1.0.254
     volumes:
-      - /home/noe/DNS/conf:/etc/bind
-      - /home/noe/DNS/zonas:/var/lib/bind
+      - /home/calocaro/DNS/conf:/etc/bind
+      - /home/calocaro/DNS/zonas:/var/lib/bind
   asir_cliente:
     container_name: asir_clliente
     image: alpine
@@ -76,7 +76,7 @@ _Posteriormente a tenerla creada ya podemos asignarle una ip concreta dentro del
 
 _Indicaremos los puertos TCP y UDP en este caso 5300:53 (Puerto Interno/Externo)_
 
-_También tendremos que definir los **volumes** para designar ```/etc/bind``` hacia nuestro directorio **[conf](https://github.com/ndiazdossantos/practica1/tree/master/conf)**, haciendo referencia a nuestros ficheros de configuración y ```/var/lib/bind``` hacia **[zonas](https://github.com/ndiazdossantos/practica1/tree/master/zonas)** haciendo referencia a las zonas del servidor DNS._
+_También tendremos que definir los **volumes** para designar ```/etc/bind``` hacia nuestro directorio conf, haciendo referencia a nuestros ficheros de configuración y ```/var/lib/bind``` hacia zonas* haciendo referencia a las zonas del servidor DNS._
 
 _Posteriormente definimos el nombre del contenedor y campos básicos de configuración_
 
@@ -163,8 +163,6 @@ text     IN      TXT     "Texto predefinido"
 
 _También conocido como "Tiempo de Vida" o "Time To Live", por sus siglas en inglés, es el valor de tiempo que le indica a los servidores por cuánto tiempo almacenar un registro DNS en la memoria local antes de ser descartado._
 
-[+ Información](https://help.one.com/hc/es/articles/115005596005--Qu%C3%A9-es-el-TTL-)
-
 * **NS**
 
 _NS significa "servidor de nombres". Los registros NS indican a Internet a dónde ir para buscar la dirección IP de un dominio._
@@ -199,7 +197,3 @@ Si deseamos que se ejecute en segundo plano podemos añadirle el parámetro ***-
 ```
 docker-compose up -d
 ```
-
-# Comprobación funcionamiento DNS
-
-Realizamos ping desde el servicio **alpine** al servicio de **bind9** para comprobar si el servicio está funcionando correctamente.
